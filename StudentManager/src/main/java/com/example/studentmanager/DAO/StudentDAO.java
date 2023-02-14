@@ -21,7 +21,7 @@ public class StudentDAO {
     private final String INSERT_STUDENT = "insert into student(name, dateOfBirth, address,phoneNumber,email, classroom_id) value (?,?,?,?,?,?)";
     private final String UPDATE_STUDENT = "update student set name = ?, dateOfBirth = ?, address = ?,phoneNumber=?,email=?,classroom_id=? where id = ?";
     private final String DELETE_STUDENT = "delete from student where id = ?";
-    private final String SEARCH_BY_NAME = "select * from student where name = ?";
+    private final String SEARCH_BY_NAME = "select * from student where name like ? ";
     public StudentDAO() {
         connection = MyConnection.getConnection();
         classroomService = new ClassroomService();
@@ -131,7 +131,7 @@ public class StudentDAO {
     public List<Student> search(String name) {
         List<Student> students = new ArrayList<>();
         try (PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_BY_NAME)) {
-            preparedStatement.setString(1, name);
+            preparedStatement.setString(1, "%" + name + "%");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Classroom classroom = classroomService.findById(resultSet.getInt(5));

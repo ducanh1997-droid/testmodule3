@@ -107,7 +107,7 @@ public class StudentServlet extends HttpServlet {
     private void create(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name = request.getParameter("name");
         String dateOfBirth = request.getParameter("dateOfBirth");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate localDate = LocalDate.parse(dateOfBirth, formatter);
         String address = request.getParameter("address");
         String phoneNumber = request.getParameter("phoneNumber");
@@ -132,7 +132,7 @@ public class StudentServlet extends HttpServlet {
         Integer id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         String dateOfBirth = request.getParameter("dateOfBirth");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate localDate = LocalDate.parse(dateOfBirth, formatter);
         String address = request.getParameter("address");
         String phoneNumber = request.getParameter("phoneNumber");
